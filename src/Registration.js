@@ -8,22 +8,35 @@ const Registration = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const registerUser = async (email, password, firstName, lastName) => {
-        try {
-            await firebase.auth().createUserWithEmailAndPassword(email, password);
-            await firebase.auth().currentUser.sendEmailVerification({
-                handleCodeInApp: true,
+    registerUser = async (email, password, firstName, lastName) => {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            firebase.auth().currentUser.sendEmailVerification({
+                handlCodeInApp: true,
                 url: 'https://abcd-18752.firebaseapp.com',
-            });
-            await firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
-                firstName,
-                lastName,
-                email,
-            });
-            alert('Registration successful. Verification email sent.');
-        } catch (error) {
-            alert(error.message);
-        }
+            })
+            .then(() => {
+                alert('Verification email sent')
+            }).catch((error) => {
+                alert(error.message)
+            })
+            .then(() => {
+                firebase.firestore().collection('users')
+                .doc(firebase.auth().currentUser.uid)
+                .set({
+                    firstName,
+                    lastName,
+                    email,
+                })
+
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+        })
+        .catch((error) => {
+            alert(error.message)
+        })
     };
 
     return (

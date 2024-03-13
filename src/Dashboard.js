@@ -10,23 +10,20 @@ const Dashboard = () => {
         .doc(firebase.auth().currentUser.uid).get()
         .then((snapshot)=> {
             if(snapshot.exists){
-                setName(snapshot.data())
+                setName(snapshot.data().firstName)  // Corrected this line
             }
             else{
                 console.log('User does not exist')
             }
-
-            })
-
-        },[])
+        })
+    },[])
+    
    return(
        <SafeAreaView style={styles.container}>
             <Text style={{fontSize:20, fontWeight:'bold'}}>
                 Hello, {name.firstName}
             </Text>
-            <TouchableOpacity>
-                onPress={() => firebase.auth().signOut()}
-                style={styles}
+            <TouchableOpacity onPress={() => firebase.auth().signOut()} style={styles} >
                 <Text style={{fontSize:22, fontWeight:'bold'}}>
                     Sign Out
                 </Text>
