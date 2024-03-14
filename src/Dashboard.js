@@ -5,12 +5,22 @@ import { firebase } from '../firebaseConfig'
 const Dashboard = () => {
     const [name, setName] = useState('')  
 
+    //change the password
+    const changePassword = () => {
+        firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email)
+        .then(() => {
+            alert("Password rest email sent")
+        }).catch((error) => {
+            alert(error)
+        })
+    }
+
     useEffect(() => {
         firebase.firestore().collection('users')
         .doc(firebase.auth().currentUser.uid).get()
         .then((snapshot)=> {
             if(snapshot.exists){
-                setName(snapshot.data().firstName)  // Corrected this line
+                setName(snapshot.data().firstName)
             }
             else{
                 console.log('User does not exist')
@@ -21,13 +31,21 @@ const Dashboard = () => {
    return(
        <SafeAreaView style={styles.container}>
             <Text style={{fontSize:20, fontWeight:'bold'}}>
-                Hello, {name.firstName}
+                Hello, {name}
             </Text>
-            <TouchableOpacity onPress={() => firebase.auth().signOut()} style={styles} >
+
+            <TouchableOpacity onPress={() => {changePassword()}} style={styles.button} >
+                <Text style={{fontSize:22, fontWeight:'bold'}}>
+                    change Password
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {firebase.auth().signOut()}} style={styles.button} >
                 <Text style={{fontSize:22, fontWeight:'bold'}}>
                     Sign Out
                 </Text>
             </TouchableOpacity>
+        
        </SafeAreaView>
    )
 }

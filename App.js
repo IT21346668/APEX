@@ -7,7 +7,7 @@ import Login from "./src/Login";
 import Registration from "./src/Registration";
 import Dashboard from "./src/Dashboard";
 import Header from "./Components/Header";
-// import { Stack } from "@react-navigation/stack";
+import EmailInputScreen from "./src/EmailInputScreen";
 
 
 const Stack = createStackNavigator();
@@ -61,8 +61,7 @@ function App() {
               elevation: 25
             }
           }}
-        />
-        
+        /> 
       </Stack.Navigator>
     );
   }
@@ -84,6 +83,21 @@ function App() {
             }
           }}
         />
+         <Stack.Screen
+        name="EmailInput"
+        component={EmailInputScreen}
+        options={{
+          headerTitle: () => <Header name="Email Input" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#00e4d0',
+            shadowColor: '#000',
+            elevation: 25
+          }
+        }}
+      />
     </Stack.Navigator>
   );
 }

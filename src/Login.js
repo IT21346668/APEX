@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { firebase } from '../firebaseConfig'
@@ -16,6 +16,18 @@ const Login = () => {
             alert(error.message)
         }
     }
+
+    //forgot Password
+    const forgotPassword = () => {
+        firebase.auth().sendPasswordResetEmail(email)
+        .then(() => {
+            alert("Password reset email sent")
+        }).catch((error) => {
+            alert(error)
+        })
+    }
+
+
     return(
         <View style={StyleSheet.container}>
             <Text style={{fontWeight: 'bold', fontSize : 26}}>
@@ -46,12 +58,24 @@ const Login = () => {
             >
                 <Text style={{fontWeight: 'bold', fontSize:22}}>Login</Text>
             </TouchableOpacity>
+
+
             <TouchableOpacity
                 onPress={() => navigation.navigate('Registration')}
                 style={{marginTop : 20}}
             >
                 <Text style={{fontWeight: 'bold', fontSize:16}}>
                     Don't have an account? Register Now
+                </Text>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity
+                onPress={() => {forgotPassword()}}
+                style={{marginTop : 20}}
+            >
+                <Text style={{fontWeight: 'bold', fontSize:16}}>
+                    Forget Password?
                 </Text>
             </TouchableOpacity>
         </View>
