@@ -29,13 +29,13 @@ const Login = () => {
 
 
     return(
-        <View style={StyleSheet.container}>
+        <View style={styles.container}>
             <Text style={{fontWeight: 'bold', fontSize : 26}}>
                 Login
             </Text>
             <View style={{marginTop : 40}}>
                 <TextInput
-                    style={StyleSheet.input}
+                    style={styles.TextInput}
                     placeholder="Email"
                     onChangeText={(email) => setEmail(email)}
                     autoCapitalize="none"
@@ -43,7 +43,7 @@ const Login = () => {
                 />
 
                  <TextInput
-                    style={StyleSheet.input}
+                    style={styles.TextInput}
                     placeholder="Password"
                     onChangeText={(password) => setPassword(password)}
                     autoCapitalize="none"
@@ -54,17 +54,17 @@ const Login = () => {
             </View>
             <TouchableOpacity
                 onPress={() => loginUser(email, password)}
-                style={StyleSheet.button}
+                style={styles.button}
             >
-                <Text style={{fontWeight: 'bold', fontSize:22}}>Login</Text>
+                <Text style={{fontWeight: 'bold', fontSize:15}}>Login</Text>
             </TouchableOpacity>
 
 
             <TouchableOpacity
                 onPress={() => navigation.navigate('Registration')}
-                style={{marginTop : 20}}
+                style={{marginTop : 30}}
             >
-                <Text style={{fontWeight: 'bold', fontSize:16}}>
+                <Text style={{fontWeight: 'bold', fontSize:13, color: '#414654'}}>
                     Don't have an account? Register Now
                 </Text>
             </TouchableOpacity>
@@ -72,9 +72,9 @@ const Login = () => {
 
             <TouchableOpacity
                 onPress={() => {forgotPassword()}}
-                style={{marginTop : 20}}
+                style={{marginTop : 25}}
             >
-                <Text style={{fontWeight: 'bold', fontSize:16}}>
+                <Text style={{fontWeight: 'bold', fontSize: 13, color: '#414654' }}>
                     Forget Password?
                 </Text>
             </TouchableOpacity>
@@ -88,27 +88,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        marginTop:100,
+        marginTop: 50,
     },
     TextInput: {
         paddingTop:20,
         paddingBottom:10,
-        width:400,
-        fontSize:20,
-        borderBottomWidth:1,
-        borderBottomColor: '#000',
-        marginBottom:10,
+        height: 50,
+        width: 300,
+        fontSize: 13,
+        borderBottomWidth: 1,
+        borderBottomColor: '#6c9b31',
+        marginBottom: 10,
         textAlign: 'center'
     
     },
     button:{
-        marginTop:50,
-        height:70,
-        width:250,
-        backgroundColor:'#026efd',
+        marginTop: 40,
+        height: 40,
+        width: 150,
+        borderColor: '#6c9b31',
+        borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius:50,
+        borderRadius: 50,
 
     }
 

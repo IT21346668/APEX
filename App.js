@@ -8,6 +8,7 @@ import Registration from "./src/Registration";
 import Dashboard from "./src/Dashboard";
 import Header from "./Components/Header";
 import EmailInputScreen from "./src/EmailInputScreen";
+import Temperature from "./src/TemperatureScreen";
 
 
 const Stack = createStackNavigator();
@@ -41,7 +42,7 @@ function App() {
               height:150,
               borderBottomLeftRadius: 50,
               borderBottomRightRadius: 50,
-              backgroundColor: '#00e4d0',
+              backgroundColor: '#6c9b31',
               shadowColor: '#000',
               elevation: 25
             }
@@ -56,7 +57,7 @@ function App() {
               height:150,
               borderBottomLeftRadius: 50,
               borderBottomRightRadius: 50,
-              backgroundColor: '#00e4d0',
+              backgroundColor: '#6c9b31',
               shadowColor: '#000',
               elevation: 25
             }
@@ -77,12 +78,30 @@ function App() {
               height:150,
               borderBottomLeftRadius: 50,
               borderBottomRightRadius: 50,
-              backgroundColor: '#00e4d0',
+              backgroundColor: '#81c130',
               shadowColor: '#000',
               elevation: 25
             }
           }}
         />
+
+        <Stack.Screen 
+          name="Temperature"
+          component={Temperature}
+          options={{
+            headerTitle: () => <Header  name="Temperature"  />,
+            headerStyle: {
+              height:150,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+              backgroundColor: '#6c9b31',
+              shadowColor: '#000',
+              elevation: 25
+            }
+          }}
+        />
+
+
          <Stack.Screen
         name="EmailInput"
         component={EmailInputScreen}
